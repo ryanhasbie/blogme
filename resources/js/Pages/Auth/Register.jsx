@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
+import Guest from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import Input from '@/Components/Input';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
 export default function Register() {
@@ -20,7 +20,7 @@ export default function Register() {
         };
     }, []);
 
-    const onHandleChange = (event) => {
+    const onChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
@@ -38,14 +38,14 @@ export default function Register() {
                 <div>
                     <InputLabel forInput="name" value="Name" />
 
-                    <TextInput
+                    <Input
                         type="text"
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
-                        handleChange={onHandleChange}
+                        onChange={onChange}
                         required
                     />
 
@@ -55,13 +55,13 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel forInput="email" value="Email" />
 
-                    <TextInput
+                    <Input
                         type="email"
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        handleChange={onHandleChange}
+                        onChange={onChange}
                         required
                     />
 
@@ -71,13 +71,13 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel forInput="password" value="Password" />
 
-                    <TextInput
+                    <Input
                         type="password"
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        handleChange={onHandleChange}
+                        onChange={onChange}
                         required
                     />
 
@@ -87,12 +87,12 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel forInput="password_confirmation" value="Confirm Password" />
 
-                    <TextInput
+                    <Input
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
-                        handleChange={onHandleChange}
+                        onChange={onChange}
                         required
                     />
 

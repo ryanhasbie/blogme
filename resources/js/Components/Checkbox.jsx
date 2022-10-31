@@ -1,13 +1,15 @@
+import clsx from 'clsx';
 import React from 'react';
 
-export default function Checkbox({ name, value, handleChange }) {
+export default function Checkbox({ className, label, ...props }) {
     return (
-        <input
-            type="checkbox"
-            name={name}
-            value={value}
-            className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            onChange={(e) => handleChange(e)}
-        />
+        <label className={clsx('flex items-center gap-x-2.5', className)}>
+            <input
+                {...props}
+                type="checkbox"
+                className="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-0 focus:ring-offset-0"
+            />
+            <span className="select-none text-gray-600">{label}</span>
+        </label>
     );
 }

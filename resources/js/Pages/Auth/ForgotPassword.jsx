@@ -2,7 +2,7 @@ import React from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import Input from '@/Components/Input';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function ForgotPassword({ status }) {
@@ -10,7 +10,7 @@ export default function ForgotPassword({ status }) {
         email: '',
     });
 
-    const onHandleChange = (event) => {
+    const onChange = (event) => {
         setData(event.target.name, event.target.value);
     };
 
@@ -32,13 +32,13 @@ export default function ForgotPassword({ status }) {
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
-                <TextInput
+                <Input
                     type="text"
                     name="email"
                     value={data.email}
                     className="mt-1 block w-full"
                     isFocused={true}
-                    handleChange={onHandleChange}
+                    onChange={onChange}
                 />
 
                 <InputError message={errors.email} className="mt-2" />

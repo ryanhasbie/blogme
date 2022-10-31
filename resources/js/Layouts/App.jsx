@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from './Navbar'
+import Navigation from './Navigation'
 
 export default function App({children}) {
     return (
         <div>
-            <Navbar></Navbar>
+            <Navigation></Navigation>
             <div className="pt-8">
                 {children}
             </div>

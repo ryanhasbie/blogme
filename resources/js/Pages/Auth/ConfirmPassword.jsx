@@ -3,7 +3,7 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import Input from '@/Components/Input';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function ConfirmPassword() {
@@ -17,7 +17,7 @@ export default function ConfirmPassword() {
         };
     }, []);
 
-    const onHandleChange = (event) => {
+    const onChange = (event) => {
         setData(event.target.name, event.target.value);
     };
 
@@ -39,13 +39,13 @@ export default function ConfirmPassword() {
                 <div className="mt-4">
                     <InputLabel forInput="password" value="Password" />
 
-                    <TextInput
+                    <Input
                         type="password"
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         isFocused={true}
-                        handleChange={onHandleChange}
+                        onChange={onChange}
                     />
 
                     <InputError message={errors.password} className="mt-2" />
