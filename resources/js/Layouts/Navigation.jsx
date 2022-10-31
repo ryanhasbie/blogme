@@ -31,7 +31,7 @@ export default function Navbar() {
                             </div>
                             <div className="flex items-center">
                                 {auth.user ? <div className="flex items-center">
-                                    <DropdownMenu label="Ryan Hasbie">
+                                    <DropdownMenu label={auth.user.name}>
                                         <DropdownMenu.Link
                                             href={route('dashboard')}
                                         >
