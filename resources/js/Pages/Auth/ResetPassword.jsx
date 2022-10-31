@@ -31,7 +31,7 @@ export default function ResetPassword({ token, email }) {
     };
 
     return (
-        <GuestLayout>
+        <>
             <Head title="Reset Password" />
 
             <form onSubmit={submit}>
@@ -87,6 +87,9 @@ export default function ResetPassword({ token, email }) {
                     </PrimaryButton>
                 </div>
             </form>
-        </GuestLayout>
+        </>
     );
 }
+
+ResetPassword.layout = page => <Guest children={page} />
+
