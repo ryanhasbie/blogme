@@ -34,10 +34,12 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $categoriesGlobal = \App\Models\Category::query()->whereHas('articles')->select('name', 'slug')->get();
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
             ],
+            'categories_global' => cache()->rememberForever('categories_global', fn () => $categoriesGlobal),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),

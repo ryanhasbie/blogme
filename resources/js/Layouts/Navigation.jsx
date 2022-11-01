@@ -6,7 +6,7 @@ import ResponsiveNavigation from '@/Layouts/ResponsiveNavigation';
 import { usePage } from '@inertiajs/inertia-react';
 
 export default function Navbar() {
-    const {auth}  = usePage().props
+    const {auth, categories_global}  = usePage().props
     return (
         <>
             <ResponsiveNavigation />
@@ -17,7 +17,7 @@ export default function Navbar() {
                             href={route('home')}
                             className="mr-3 text-lg font-semibold capitalize text-white"
                         >
-                            Inertia
+                            BlogMe
                         </Link>
 
                         <div className="flex flex-1 items-center justify-between">
@@ -28,6 +28,15 @@ export default function Navbar() {
                                 >
                                     Home
                                 </NavLink>
+                                {categories_global.map( (category) => (
+                                    <NavLink
+                                        key={category.slug}
+                                        active={route().current('categories.show', category.slug)}
+                                        href={route('categories.show', category.slug)}
+                                    >
+                                        {category.name}
+                                    </NavLink>
+                                ))}
                             </div>
                             <div className="flex items-center">
                                 {auth.user ? <div className="flex items-center">

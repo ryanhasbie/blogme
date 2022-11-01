@@ -17,14 +17,14 @@ function Header({ className = '', children }) {
 }
 function Title({ children }) {
     return (
-        <h1 className="text-2xl font-bold text-white lg:text-8xl">
+        <h1 className="text-2xl font-bold text-white lg:text-6xl">
             {children}
         </h1>
     );
 }
 function Subtitle({ children }) {
     return (
-        <h4 className="mt-1 text-xl font-medium text-gray-300 lg:text-3xl">
+        <h4 className="mt-6 text-xl font-medium text-gray-300 lg:text-3xl">
             {children}
         </h4>
     );
