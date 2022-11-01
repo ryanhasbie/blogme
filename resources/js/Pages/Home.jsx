@@ -3,8 +3,10 @@ import App from '@/Layouts/App'
 import { Head } from '@inertiajs/inertia-react'
 import Container from '@/Components/Container'
 import Header from '@/Components/Header'
+import Grid from '@/Components/Grid'
+import ArticleBlock from '@/Components/ArticleBlock'
 
-export default function Home() {
+export default function Home({articles}) {
     return (
         <div>
             <Head title="Blogme"/>
@@ -20,7 +22,14 @@ export default function Home() {
                 </Header.Content>
             </Header>
             <Container>
-                Home
+                {articles.length ? <Grid>
+                    {articles.map((article) => (
+                        <ArticleBlock article={article} key={article.slug}/> 
+                    ))}
+                </Grid>
+                :
+                <p>No aticles yet.</p>
+                }
             </Container>
         </div>
     )
