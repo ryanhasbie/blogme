@@ -52,14 +52,11 @@ export default function Navbar() {
                                         <DropdownMenu.Link href={'#'}>
                                             Settings
                                         </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={'#'}>
+                                        <DropdownMenu.Link href={route('articles.create')}>
                                             New article
                                         </DropdownMenu.Link>
                                         <DropdownMenu.Link href={'#'}>
                                             My articles
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={'#'}>
-                                            New article
                                         </DropdownMenu.Link>
                                         <DropdownMenu.Link
                                             href={route('logout')}
