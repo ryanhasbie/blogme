@@ -1,6 +1,6 @@
 import React from 'react'
 import App from '@/Layouts/App'
-import { Head } from '@inertiajs/inertia-react'
+import { Head, Link } from '@inertiajs/inertia-react'
 import Header from '@/Components/Header'
 import Container from '@/Components/Container'
 import Markdown from '@/Components/Markdown'
@@ -10,6 +10,18 @@ export default function Show({article}) {
         <div>
             <Head title={article.title}></Head>
             <Header>
+                <div className='mb-3'>
+                    <div className='text-gray-400 text-sm mb-3'>
+                        Fill in: <Link className='text-white underline' href={route('categories.show', article.category.slug)}>{article.category.name}</Link>
+                    </div>
+                    {article.tags.length ? 
+                        <div className='flex items-center gap-x-2'>
+                            {article.tags.map(tag => (
+                                <Link className='bg-gray-700 text-white px-2 py-1 text-xs font-medium hover:bg-gray-600 transition duration-200 rounded shadow border-t border-gray-600' key={tag.slug} href='#'>{tag.name}</Link>
+                            ))}
+                        </div>
+                    : null }
+                </div>
                 <Header.Title>
                     {article.title}
                 </Header.Title>

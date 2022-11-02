@@ -11,9 +11,10 @@ import Editor from '@/Components/Editor'
 import PrimaryButton from '@/Components/PrimaryButton'
 import Select from '@/Components/Select'
 import MultipleSelect from '@/Components/MultipleSelect'
+import { Inertia } from '@inertiajs/inertia'
 
 export default function Create({tags, categories}) {
-    const {data, setData, post, errors} = useForm({
+    const {data, setData, errors} = useForm({
         title: '',
         teaser: '',
         category_id: '',
@@ -24,7 +25,11 @@ export default function Create({tags, categories}) {
     const onChange = (e) => setData(e.target.name, e.target.value);
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
+        Inertia.post(route('articles.store'), {
+            ...data, 
+            category_id: data.category_id.id,
+            tags: data.tags.map(t => t.id)
+        })
     }
     return (
         <div>
@@ -40,8 +45,8 @@ export default function Create({tags, categories}) {
             <Container>
                 <form onSubmit={onSubmit}>
                     <div className="mb-6">
-                        <InputLabel forInput='title' value='Title' />
-                        <InputFile name='title' id='title' onChange={(e) => setData('picture', e.target.files[0])} />
+                        <InputLabel forInput='picture' value='Picture' />
+                        <InputFile name='picture' id='picture' onChange={(e) => setData('picture', e.target.files[0])} />
                     </div>
                     <div className="grid grid-cols-12 gap-6 mb-6">
                         <div className="col-span-4">
