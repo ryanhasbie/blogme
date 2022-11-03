@@ -24,7 +24,7 @@ export default function Home({articles}) {
             <Container>
                 {articles.length ? 
                 <>
-                    <Grid>
+                    <Grid className='items-start'>
                         {articles.map((article) => (
                             <ArticleBlock article={article} key={article.slug}/> 
                         ))}

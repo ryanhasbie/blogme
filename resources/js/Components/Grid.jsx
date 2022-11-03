@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import React from 'react';
 
-export default function Grid({ cols = 3, children }) {
+export default function Grid({ className='', cols = 3, children }) {
     return (
         <div
             className={clsx(
+                className,
                 cols == 3 && 'lg:grid-cols-3',
                 cols == 2 && 'lg:grid-cols-2',
                 cols == 4 && 'lg:grid-cols-4',
