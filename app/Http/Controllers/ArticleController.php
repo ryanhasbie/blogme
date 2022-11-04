@@ -133,7 +133,14 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        
+        return inertia('Articles/Edit', [
+            'article'    => $article->load([
+                'tags' => fn ($query) => $query->select('id', 'name'),
+                'category' => fn ($query) => $query->select('id', 'name'),
+            ]),
+            'tags'       => $this->tags,
+            'categories' => $this->categories,
+        ]);
     }
 
     /**
@@ -145,7 +152,27 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'picture' => ['nullable', 'mimes:png, jpg, jpeg', 'image'],
+            'title'   => ['required', 'min:3', 'string'],
+            'teaser'  => ['required', 'string', 'min:3'],
+            'body'  => ['required', 'string', 'min:3'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'tags'  => ['required', 'array'],
+        ]);
+
+        $picture = $request->file('picture');
+        $article->update([
+            'title' => $title = $request->title,
+            'teaser' => $request->teaser,
+            'category_id' => $request->category_id,
+            'body'  => $request->body,
+            'picture' => $request->hasFile('picture') ? $picture->storeAs('images/articles', $article->slug .'.'. $picture->extension()) : $article->picture,
+        ]); 
+
+        $article->tags()->sync($request->tags, true);
+
+        return to_route('articles.show', $article);
     }
 
     /**

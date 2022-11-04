@@ -33,8 +33,8 @@ export default function ArticleTable(props) {
                                 </Table.Td>
                                 <td>
                                     <Table.Dropdown>
-                                        <Table.DropdownItem className='hover:bg-green-50 hover:text-green-500'href={'#'}>View</Table.DropdownItem>
-                                        <Table.DropdownItem className='hover:bg-yellow-50 hover:text-yellow-500' href={'#'}>Edit</Table.DropdownItem>
+                                        <Table.DropdownItem className='hover:bg-green-50 hover:text-green-500'href={route('articles.show', article.slug)}>View</Table.DropdownItem>
+                                        <Table.DropdownItem className='hover:bg-yellow-50 hover:text-yellow-500' href={route('articles.edit', article.slug)}>Edit</Table.DropdownItem>
                                         <Table.DropdownItem className='hover:bg-rose-50 hover:text-rose-500' href={'#'}>Delete</Table.DropdownItem>
                                     </Table.Dropdown>
                                 </td>

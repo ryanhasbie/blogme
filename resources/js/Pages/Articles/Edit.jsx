@@ -7,26 +7,27 @@ import PrimaryButton from '@/Components/PrimaryButton'
 import { Inertia } from '@inertiajs/inertia'
 import ArticleForm from '@/Components/ArticleForm'
 
-export default function Create({tags}) {
+export default function Edit({article, tags}) {
     const {data, setData} = useForm({
-        title: '',
-        teaser: '',
-        category_id: '',
-        body: '',
+        title: article.title,
+        teaser: article.teaser,
+        category_id: article.category,
+        body: article.body,
         picture: '',
-        tags: [tags[0], tags[1]],
+        tags: article.tags,
     })
     const onSubmit = (e) => {
         e.preventDefault();
-        Inertia.post(route('articles.store'), {
+        Inertia.post(route('articles.update', article.slug), {
             ...data, 
+            _method: "PUT",
             category_id: data.category_id.id,
             tags: data.tags.map(t => t.id)
         })
     }
     return (
         <div>
-            <Head title={'Create New Article'}></Head>
+            <Head title={'Update Article'}></Head>
             <Header>
                 <Header.Title>
                     {data.title || 'The title...'}
@@ -38,11 +39,11 @@ export default function Create({tags}) {
             <Container>
                 <form onSubmit={onSubmit}>
                     <ArticleForm {...{data, setData}} />
-                    <PrimaryButton>Create</PrimaryButton>
+                    <PrimaryButton>Update</PrimaryButton>
                 </form>
             </Container>
         </div>
     )
 }
 
-Create.layout = page => <App children={page}/>
+Edit.layout = page => <App children={page}/>
