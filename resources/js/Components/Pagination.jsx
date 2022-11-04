@@ -13,6 +13,7 @@ export default function Pagination({ meta, links }) {
                                 <Link
                                     className="rounded border inline-flex p-2"
                                     href={links.prev}
+                                    preserveScroll
                                 >
                                     <LeftIcon />
                                 </Link>
@@ -27,6 +28,7 @@ export default function Pagination({ meta, links }) {
                                 <Link
                                     className="rounded border inline-flex p-2"
                                     href={links.next}
+                                    preserveScroll
                                 >
                                     <RightIcon />
                                 </Link>
@@ -106,6 +108,7 @@ function PaginateLink({ active, href, children }) {
                     'w-11 h-9 text-sm font-semibold rounded shadow-sm border flex items-center justify-center'
                 )}
                 href={href}
+                preserveScroll
             >
                 {children}
             </Link>

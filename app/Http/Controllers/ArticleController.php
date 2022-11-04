@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Resources\ArticleItemResource;
+use App\Http\Resources\ArticleTableResource;
 use App\Http\Resources\ArticleSingleResource;
 
 class ArticleController extends Controller
@@ -23,6 +24,23 @@ class ArticleController extends Controller
         $this->middleware('auth')->except('show', 'index');
         $this->tags = Tag::select('id', 'name')->get();
         $this->categories = Category::select('id', 'name')->get();
+    }
+
+    public function table (Request $request)
+    {
+        $articles = Article::query()
+                    ->with([
+                        'author',
+                        'tags' => fn ($query) => $query->select('name', 'slug', 'id'),
+                        'category' => fn ($query) => $query->select('name', 'slug', 'id'), 
+                    ])
+                    ->whereBelongsTo($request->user(), 'author')
+                    ->latest()
+                    ->fastPaginate(10);
+        return inertia('Articles/Table', [
+            'articles'  => ArticleTableResource::collection($articles),
+        ]);
+    
     }
 
     public function index()
