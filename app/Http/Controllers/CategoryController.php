@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function show (Category $category)
     {
         $articles = Article::query()
-        ->select('title', 'slug', 'user_id', 'teaser', 'created_at', 'id')
+        ->select('title', 'slug', 'picture', 'user_id', 'teaser', 'created_at', 'id')
         ->with(['tags' => fn($tag) => $tag->select('name', 'slug')])
         ->latest()
         ->fastPaginate(6);

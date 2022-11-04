@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
@@ -10,6 +11,8 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
 
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::get('/tags/{tag:slug}', [TagController::class, 'show'])->name('tags.show');
 
 Route::resource('/articles', ArticleController::class);
 

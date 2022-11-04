@@ -7,15 +7,15 @@ import ArticleBlock from '@/Components/ArticleBlock'
 import Grid from '@/Components/Grid'
 import Pagination from '@/Components/Pagination'
 
-export default function Show({category, ...props}) {
+export default function Show({tag, ...props}) {
     const {data: articles, meta,  links} = props.articles
     return (
         <>
-            <Head title={category.name}/>
+            <Head title={tag.name}/>
             <Header>
-                <Header.Title>{category.name}</Header.Title>
+                <Header.Title>{tag.name}</Header.Title>
                 <Header.Subtitle>
-                    This page can show you more beautifull articles about {category.name}.
+                    This page can show you more beautifull articles about {tag.name}.
                 </Header.Subtitle>
             </Header>
             <Container>
