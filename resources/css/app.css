@@ -3,3 +3,5 @@
 @import 'tailwindcss/utilities';
 
 @import './material.css';
+@import './sweetalert.css';
+

@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleTableResource;
 use App\Http\Resources\ArticleSingleResource;
@@ -183,6 +184,11 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        if($article->picture) {
+            Storage::delete($article);
+        }
+        $article->tags()->detach();
+        $article->delete();
+        return back();
     }
 }

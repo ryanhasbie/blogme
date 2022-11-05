@@ -52,12 +52,14 @@ export default function Navbar() {
                                         <DropdownMenu.Link href={'#'}>
                                             Settings
                                         </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={route('articles.create')}>
+                                        {auth.user.hasRole ? <>
+                                            <DropdownMenu.Link href={route('articles.create')}>
                                             New article
-                                        </DropdownMenu.Link>
-                                        <DropdownMenu.Link href={route('articles.table')}>
+                                            </DropdownMenu.Link>
+                                            <DropdownMenu.Link href={route('articles.table')}>
                                             My articles
-                                        </DropdownMenu.Link>
+                                            </DropdownMenu.Link>
+                                        </> : null}
                                         <DropdownMenu.Link
                                             href={route('logout')}
                                             method="POST"
