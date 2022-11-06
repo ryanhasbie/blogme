@@ -7,13 +7,14 @@ import PrimaryButton from '@/Components/PrimaryButton'
 import { Inertia } from '@inertiajs/inertia'
 import ArticleForm from '@/Components/ArticleForm'
 
-export default function Edit({article, tags}) {
+export default function Edit({article, statuses}) {
     const {data, setData} = useForm({
         title: article.title,
         teaser: article.teaser,
         category_id: article.category,
         body: article.body,
         picture: '',
+        status: statuses.find((i) => i.id == article.status),
         tags: article.tags,
     })
     const onSubmit = (e) => {
@@ -22,6 +23,7 @@ export default function Edit({article, tags}) {
             ...data, 
             _method: "PUT",
             category_id: data.category_id.id,
+            status: data.status.id,
             tags: data.tags.map(t => t.id)
         })
     }

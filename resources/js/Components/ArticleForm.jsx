@@ -10,7 +10,7 @@ import Select from './Select'
 import Textarea from './Textarea'
 
 export default function ArticleForm({data, setData}) {
-    const {errors, tags, categories} = usePage().props
+    const {errors, tags, categories, statuses, auth} = usePage().props
     const onChange = (e) => setData(e.target.name, e.target.value);
     return (
         <>
@@ -49,6 +49,11 @@ export default function ArticleForm({data, setData}) {
                         <InputLabel forInput='body' value='Body' />
                         <Editor name='body' id='body' onChange={onChange} value={data.body} />
                         {errors.body ? <Error value={errors.body}/> : null}
+                    </div>
+                    <div className="col-span-4">
+                        <InputLabel forInput='category_id'>Category</InputLabel>
+                        <Select value={data.status} data={statuses} onChange={(e) => setData('status', e)} />
+                        {errors.status ? <Error value={errors.status}/> : null}
                     </div>
         </>
     )
