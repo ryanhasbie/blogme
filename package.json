@@ -27,6 +27,7 @@
     "dependencies": {
         "clsx": "^1.2.1",
         "highlight.js": "^11.6.0",
+        "isomorphic-dompurify": "^0.23.0",
         "marked": "^4.2.0",
         "postcss-import": "^15.0.0",
         "react-hot-toast": "^2.4.0",

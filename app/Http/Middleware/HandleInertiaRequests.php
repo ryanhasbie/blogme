@@ -37,11 +37,11 @@ class HandleInertiaRequests extends Middleware
         $categoriesGlobal = \App\Models\Category::query()->whereHas('articles')->select('name', 'slug')->get();
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => [
-                    'name'  => $request->user()->name,
+                'user' => $request->user() ? [
+                    'name' => $request->user()->name,
                     'email' => $request->user()->email,
-                    'hasRole' => $request->user()->hasRole(),
-                ],
+                    'hasRole' => $request->user()?->hasRole(),
+                ] : null,
             ],
             'categories_global' => cache()->rememberForever('categories_global', fn () => $categoriesGlobal),
             'ziggy' => function () use ($request) {
