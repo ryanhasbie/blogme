@@ -42,7 +42,7 @@ class ArticleController extends Controller
                         'tags' => fn ($query) => $query->select('name', 'slug', 'id'),
                         'category' => fn ($query) => $query->select('name', 'slug', 'id'), 
                     ])
-                    ->whereBelongsTo($request->user(), 'author')
+                    ->when(!$request->user()->hasAnyRoles(['admin']), fn ($query) => $query->whereBelongsTo($request->user(), 'author'))
                     ->latest()
                     ->fastPaginate(10);
         return inertia('Articles/Table', [
@@ -120,6 +120,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $this->authorize('view', $article);
         $articles = Article::query()
                     ->select('id', 'title', 'slug')
                     ->whereNot('id', $article->id)
