@@ -5,6 +5,7 @@ import { Link } from '@inertiajs/inertia-react'
 import Pagination from '@/Components/Pagination'
 import Table from '@/Components/Table'
 import useSwal from '@/Hooks/useSwal'
+import clsx from 'clsx'
 
 export default function ArticleTable(props) {
     const {data: articles, meta, links} = props.articles
@@ -18,6 +19,7 @@ export default function ArticleTable(props) {
                         <Table.Th>Title</Table.Th>
                         <Table.Th>Category</Table.Th>
                         <Table.Th>Tags</Table.Th>
+                        <Table.Th>Status</Table.Th>
                         <th></th>
                     </tr>
                 </Table.Thead>
@@ -34,6 +36,16 @@ export default function ArticleTable(props) {
                                             <Link key={i} href={tag.url} className='bg-gray-100 font-medium text-xs px-2 py-1 rounded hover:bg-gray-300 transition'>{tag.name}</Link>
                                         ))}
                                     </div>
+                                </Table.Td>
+                                <Table.Td>
+                                    <span className={clsx(
+                                        article.status === 'Published' && 'bg-green-100 text-green-800',
+                                        article.status === 'Unpublished' && 'bg-orange-100 text-orange-800',
+                                        article.status === 'Preview' && 'bg-sky-100 text-sky-800',
+                                        'px-2 py-1 rounded text-xs font-semibold'
+                                    )}>
+                                        {article.status}
+                                    </span>
                                 </Table.Td>
                                 <td>
                                     <Table.Dropdown>

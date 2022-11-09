@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Enums\ArticleStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -33,5 +34,12 @@ class Article extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id')->select('id', 'name');
+    }
+
+    public function scopeWherePublished ($query)
+    {
+    
+        return $query->where('status', ArticleStatus::PUBLISHED);
+    
     }
 }
