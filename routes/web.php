@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
@@ -20,3 +21,5 @@ Route::get('/tags/{tag:slug}', [TagController::class, 'show'])->name('tags.show'
 Route::resource('/articles', ArticleController::class);
 
 require __DIR__.'/auth.php';
+
+Route::get('/{user:username}', [UserController::class, 'show']);

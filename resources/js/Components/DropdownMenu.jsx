@@ -42,7 +42,7 @@ function DropdownMenu({ toggleAnimate = true, label, children }) {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                     >
-                        <Menu.Items className="absolute right-0 top-9 w-60 space-y-1 overflow-hidden rounded-lg border border-gray-700 bg-gray-800 px-4 py-5 shadow-sm">
+                        <Menu.Items className="absolute z-50 right-0 top-9 w-60 space-y-1 overflow-hidden rounded-lg border border-gray-700 bg-gray-800 px-4 py-5 shadow-sm">
                             {children}
                         </Menu.Items>
                     </Transition>

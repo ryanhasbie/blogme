@@ -6,7 +6,7 @@ function Header({ className = '', children }) {
         <div
             className={clsx(
                 className,
-                '-mt-8 mb-8 grid grid-cols-12 bg-gray-800 py-5 lg:py-32'
+                '-mt-8 mb-8 md:mb-16 grid grid-cols-12 bg-gray-900 py-5 lg:py-28'
             )}
         >
             <div className="col-span-10 col-start-2">
@@ -24,7 +24,7 @@ function Title({ children }) {
 }
 function Subtitle({ children }) {
     return (
-        <h4 className="mt-6 text-xl font-medium text-gray-300 lg:text-3xl">
+        <h4 className="mt-2 lg:mt-6 font-medium text-gray-300 lg:text-3xl">
             {children}
         </h4>
     );

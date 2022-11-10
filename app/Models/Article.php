@@ -12,6 +12,7 @@ class Article extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $with = ['author', 'tags'];
     protected $casts = [
         'status' => \App\Enums\ArticleStatus::class,
     ];
@@ -23,7 +24,7 @@ class Article extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->select('name', 'slug');
     }
 
     public function category()
@@ -33,7 +34,7 @@ class Article extends Model
 
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id')->select('id', 'name');
+        return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'username');
     }
 
     public function scopeWherePublished ($query)

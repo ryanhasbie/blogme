@@ -40,16 +40,15 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        tap(User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
+        ]), function($user) {
+            $user->update(['username' => 'u' . $user->id . now()->timestamp]);
+            event(new Registered($user));
+            Auth::login($user);
+        });
         return redirect(RouteServiceProvider::HOME);
     }
 }
